@@ -1,4 +1,4 @@
-# WebGL Watery Reflective Environment Mapping Sphere
+# Ripple Sphere
 
 A Watery and reflective sphere using environment mapping.
 
