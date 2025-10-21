@@ -21,7 +21,7 @@ const material = new THREE.MeshStandardMaterial({
   envMap: envMap,
 });
 
-const geometry = new THREE.SphereGeometry(1, 128, 128);
+const geometry = new THREE.SphereGeometry(1, 128, 128, 0, Math.PI * 2, 0, Math.PI / 2);
 const sphere = new THREE.Mesh(geometry, material);
 scene.add(sphere);
 
