@@ -23,6 +23,7 @@ const material = new THREE.MeshStandardMaterial({
 
 const geometry = new THREE.SphereGeometry(1, 128, 128, 0, Math.PI * 2, 0, Math.PI / 2);
 const sphere = new THREE.Mesh(geometry, material);
+sphere.rotation.x = Math.PI / 2;
 scene.add(sphere);
 
 const light = new THREE.DirectionalLight(0xffffff, 2);
@@ -95,8 +96,10 @@ window.addEventListener('click', (event) => {
   raycaster.setFromCamera(mouse, camera);
   const intersects = raycaster.intersectObject(sphere);
   if (intersects.length > 0) {
-    const hitPoint = intersects[0].point.clone().normalize();
-    addRipple(hitPoint);
+    const worldPoint = intersects[0].point.clone();
+    const localPoint = sphere.worldToLocal(worldPoint);
+    const normalizedPoint = localPoint.normalize();
+    addRipple(normalizedPoint);
   }
 });
 
