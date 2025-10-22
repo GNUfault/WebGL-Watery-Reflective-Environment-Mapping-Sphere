@@ -23,7 +23,7 @@ const material = new THREE.MeshStandardMaterial({
   envMap: envMap,
 });
 
-const geometry = new THREE.SphereGeometry(1, 128, 128, 0, Math.PI * 2, 0, Math.PI / 2);
+const geometry = new THREE.SphereGeometry(1, 64, 64, 0, Math.PI * 2, 0, Math.PI / 2);
 const sphere = new THREE.Mesh(geometry, material);
 sphere.rotation.x = Math.PI / 2;
 scene.add(sphere);
@@ -68,7 +68,7 @@ function updateRipples() {
       const fadeOut = Math.exp(-age * 3.0);
       const wave = Math.sin(dist * 60 - age * 25) * Math.exp(-dist * 5);
 
-      offset += wave * 0.03 * fadeIn * fadeOut;
+      offset += wave * 0.01 * fadeIn * fadeOut;
     }
 
     temp.copy(vertex).normalize().multiplyScalar(offset);
