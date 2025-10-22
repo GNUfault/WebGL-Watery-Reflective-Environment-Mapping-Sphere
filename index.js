@@ -6,6 +6,9 @@ const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(innerWidth, innerHeight);
 renderer.setPixelRatio(devicePixelRatio);
 document.body.appendChild(renderer.domElement);
+document.body.style.margin = '0';
+document.body.style.overflow = 'hidden';
+document.body.style.touchAction = 'none';
 
 const envMap = new THREE.CubeTextureLoader().load([
   'https://threejs.org/examples/textures/cube/Bridge2/posx.jpg',
@@ -91,9 +94,9 @@ animate();
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
-window.addEventListener('click', (event) => {
-  mouse.x = (event.clientX / innerWidth) * 2 - 1;
-  mouse.y = -(event.clientY / innerHeight) * 2 + 1;
+function handleInteraction(clientX, clientY) {
+  mouse.x = (clientX / innerWidth) * 2 - 1;
+  mouse.y = -(clientY / innerHeight) * 2 + 1;
 
   raycaster.setFromCamera(mouse, camera);
   const intersects = raycaster.intersectObject(sphere);
@@ -102,6 +105,26 @@ window.addEventListener('click', (event) => {
     const localPoint = sphere.worldToLocal(worldPoint);
     const normalizedPoint = localPoint.normalize();
     addRipple(normalizedPoint);
+  }
+}
+
+window.addEventListener('click', (event) => {
+  handleInteraction(event.clientX, event.clientY);
+});
+
+window.addEventListener('touchstart', (event) => {
+  event.preventDefault();
+  for (let i = 0; i < event.touches.length; i++) {
+    const touch = event.touches[i];
+    handleInteraction(touch.clientX, touch.clientY);
+  }
+});
+
+window.addEventListener('touchmove', (event) => {
+  event.preventDefault();
+  for (let i = 0; i < event.touches.length; i++) {
+    const touch = event.touches[i];
+    handleInteraction(touch.clientX, touch.clientY);
   }
 });
 
