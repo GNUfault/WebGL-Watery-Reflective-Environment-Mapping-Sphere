@@ -26,9 +26,8 @@ const material = new THREE.MeshStandardMaterial({
   envMap: envMap,
 });
 
-const geometry = new THREE.SphereGeometry(1, 64, 64, 0, Math.PI * 2, 0, Math.PI / 2);
+const geometry = new THREE.SphereGeometry(1, 128, 128);
 const sphere = new THREE.Mesh(geometry, material);
-sphere.rotation.x = Math.PI / 2;
 scene.add(sphere);
 
 const light = new THREE.DirectionalLight(0xffffff, 2);
