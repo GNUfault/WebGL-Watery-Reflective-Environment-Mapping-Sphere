@@ -121,10 +121,6 @@ window.addEventListener('touchstart', (event) => {
 
 window.addEventListener('touchmove', (event) => {
   event.preventDefault();
-  for (let i = 0; i < event.touches.length; i++) {
-    const touch = event.touches[i];
-    handleInteraction(touch.clientX, touch.clientY);
-  }
 });
 
 window.addEventListener('resize', () => {
