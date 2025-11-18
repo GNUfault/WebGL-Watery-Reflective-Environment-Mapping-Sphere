@@ -1,6 +1,5 @@
 # Ripple Sphere
-
-A Watery and reflective sphere using environment mapping.
+A Interactive, Watery and Reflective Orb (In your browser)
 
 ## Instruction
 1. Click on the sphere
